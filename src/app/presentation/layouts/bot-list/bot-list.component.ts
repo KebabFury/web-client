@@ -5,7 +5,7 @@ import { IconType } from '@presentation/utils/icon/icon-type.enum';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
 
 @Component({
-  selector: 'cm-product-card',
+  selector: 'app-bot-list',
   standalone: true,
   imports: [CommonModule, RouterModule, IconComponent],
   template: `
@@ -28,7 +28,7 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
               <div class="bot__content__avatar-stub">
                 <app-icon
                   class="d-flex"
-                  [icon]="IconType.ROBOT"></app-icon>
+                  [icon]="IconType.ROBOT" />
               </div>
               <div class="bot__content__info">
                 <span class="bot__content__info__name">KebabSuperBot</span>
@@ -45,7 +45,7 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
       </div>
     </div>
   `,
-  styleUrl: './bot-list.component.scss',
+  styleUrl: 'bot-list.component.scss',
 })
 export class BotListComponent {
   // public products: IProduct[] = [];
