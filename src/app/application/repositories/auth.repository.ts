@@ -19,9 +19,9 @@ export class AuthRepositoryImpl extends AuthRepository {
     return this._api.signUp(request);
   }
   public signOut(): Observable<void> {
-    return this._state.signOut(localStorage);
+    return this._state.signOut();
   }
   public isAuthorized(): Observable<boolean> {
-    return this._state.isAuthorized(localStorage);
+    return this._state.isAuthorized();
   }
 }
