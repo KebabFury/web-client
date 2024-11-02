@@ -31,8 +31,11 @@ import { IconComponent } from 'app/presentation/utils/icon/icon.component';
               <span class="header__search__icon">search</span>
           </button> -->
           <input type="text" placeholder="Поиск по имени" #filter>
-          <app-icon class="d-flex" icon="search"></app-icon>
+          <app-icon icon="search"></app-icon>
         </div>
+        <button style="">
+          <app-icon  icon="search"></app-icon>
+        </button>
       </div>
       <!-- <p>Всего продуктов: {{products.length}}</p> -->
       
