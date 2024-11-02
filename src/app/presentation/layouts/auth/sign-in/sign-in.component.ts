@@ -16,56 +16,59 @@ import { AuthService } from '@domain/services/auth.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   template: `
-    <div class="wrapper">
-      <div class="register">
-        <span class="register__title">Добро пожаловать</span>
-        <div class="login">
-          <span class="">Нету аккаунта?</span>
-          <a
-            class="login__button"
-            (click)="navigateToSignUpPage()">
-            Создать
-          </a>
-        </div>
-        <form class="register__form">
-          <div>
-            <label for="email">Email</label>
-            <input
-              id="email"
-              [formControl]="form.controls.email" />
-            <div *ngIf="displayError(form.controls.email)">
-              <small *ngIf="form.controls.email.errors?.['required']">
-                Email обязательное поле
-              </small>
-              <small *ngIf="form.controls.email.errors?.['email']">
-                Email не валидный
-              </small>
-            </div>
-          </div>
-          <div>
-            <label for="password">Пароль</label>
-            <input
-              id="password"
-              [formControl]="form.controls.password"
-              type="password" />
-            <div *ngIf="displayError(form.controls.password)">
-              <small *ngIf="form.controls.password.errors?.['required']">
-                Пароль обязательное поле
-              </small>
-            </div>
-          </div>
-        </form>
-
-        <div class="register__buttons">
-          <button
-            [disabled]="form.invalid"
-            (click)="login()"
-            mat-flat-button>
-            Войти
-          </button>
-        </div>
-      </div>
+<div class="wrapper">
+  <div class="register">
+    <span class="register__title">Welcome back!</span>
+    <div class="login">
+      <span>Don't have an account?</span>
+      <a
+        class="login__button"
+        (click)="navigateToSignUpPage()">
+        Sign Up
+      </a>
     </div>
+    <form
+      class="register__form"
+      (ngSubmit)="login()">
+      
+      <label class="title" for="email">Email</label>
+      <input
+        id="email"
+        [formControl]="form.controls.email" />
+      <div
+        class="field-error"
+        *ngIf="displayError(form.controls.email)">
+        <small *ngIf="form.controls.email.errors?.['required']">
+            Email is required!
+        </small>
+        <small *ngIf="form.controls.email.errors?.['email']">
+            Email is not valid
+        </small>
+      </div>
+
+      <label class="title" for="password">Пароль</label>
+      <input
+        id="password"
+        [formControl]="form.controls.password"
+        type="password" />
+      <div
+        class="field-error"
+        *ngIf="displayError(form.controls.password)">
+        <small *ngIf="form.controls.password.errors?.['required']">
+            Password is required!
+        </small>
+      </div>
+
+      <div class="register__buttons">
+        <button
+          [disabled]="form.invalid"
+          type="submit">
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
   `,
   styleUrl: 'sign-in.component.scss',
   host: { ngSkipHydration: 'true' },

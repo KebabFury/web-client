@@ -1,4 +1,4 @@
-@use '../../../../scss/mixins/typography.scss';
+@use '../../../../../scss/mixins/typography.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 $tablet-media: 950px;
@@ -12,6 +12,7 @@ body {
 }
 
 input {
+    color: white;
     background-color: #77777738;
 }
 .wrapper {
