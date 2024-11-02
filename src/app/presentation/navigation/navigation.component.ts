@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IconComponent } from "../utils/icon/icon.component";
 // import { AuthService } from '../../services/auth/auth.service';
 
 
@@ -10,34 +11,34 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-  ],
+    IconComponent
+],
   template: `
     <div class="navigation">
-
       <div class="navigation__category">
         <div>
-          <a mat-list-item routerLink="main" routerLink="main" routerLinkActive="mdc-list-item--activated">
+          <!-- <a mat-list-item routerLink="main" routerLink="main" routerLinkActive="mdc-list-item--activated">
             <div class="navigation__category__item">
-              <span class="navigation__category__item__icon material-symbols-outlined">person</span>
-              <span>Профиль</span>
+            <app-icon icon="profile"></app-icon>
+            <span>Profile</span>
             </div>
-          </a>
+          </a> -->
           <a mat-list-item routerLink="bots" routerLinkActive="mdc-list-item--activated">
             <div class="navigation__category__item">
-              <span class="navigation__category__item__icon material-symbols-outlined">grocery</span>
-              <span>Продукты</span>
+              <app-icon icon="robot-24-white"></app-icon>
+              <span class="navigation__category__item__name">My Bots</span>
             </div>
           </a>
-          <a mat-list-item routerLink="calendar" routerLinkActive="mdc-list-item--activated">
+          <a mat-list-item routerLink="main" routerLink="main" routerLinkActive="mdc-list-item--activated">
             <div class="navigation__category__item">
-              <span class="navigation__category__item__icon material-symbols-outlined">calendar_month</span>
-              <span>Календарь</span>
+            <app-icon icon="settings-white"></app-icon>
+            <span class="navigation__category__item__name">Settings</span>
             </div>
           </a>
           <a mat-list-item (click)="logout();">
-            <div class="navigation__category__item">
-              <span class="navigation__category__item__icon material-symbols-outlined">logout</span>
-              <span>Выйти</span>
+            <div class="navigation__category__item">\
+              <app-icon icon="logout"></app-icon>
+              <span class="navigation__category__item__name">Logout</span>
             </div>
           </a>
         </div>

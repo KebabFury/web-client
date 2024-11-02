@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IconComponent } from 'app/presentation/utils/icon/icon.component';
 
 @Component({
   selector: 'cm-product-card',
@@ -8,6 +9,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    IconComponent
   ],
   template: `
     <div class="container-main">
@@ -25,13 +27,11 @@ import { RouterModule } from '@angular/router';
         <p style="color: white; font-size: 28px; font-weight: 500;">Your Bots:</p>
         <div class="header__search">
           
-          <button mat-icon-button disabled="true">
+          <!-- <button mat-icon-button disabled="true">
               <span class="header__search__icon">search</span>
-          </button>
+          </button> -->
           <input type="text" placeholder="Поиск по имени" #filter>
-          <button mat-icon-button>
-              <span class="header__search__icon">mic</span>
-          </button>
+          <app-icon class="d-flex" icon="search"></app-icon>
         </div>
       </div>
       <!-- <p>Всего продуктов: {{products.length}}</p> -->
@@ -40,7 +40,9 @@ import { RouterModule } from '@angular/router';
         @for (product of productsFilteredList; track product) {
           <div class="bot">
             <div class="bot__content"> 
-              <div class="bot__content__avatar-stub"></div>
+              <div class="bot__content__avatar-stub">
+                <app-icon class="d-flex" icon="robot-black"></app-icon>
+              </div>
               <div class="bot__content__info">
                 <span class="bot__content__info__name">KebabSuperBot</span>
                 <span class="bot__content__info__description">Description</span>
