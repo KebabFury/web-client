@@ -25,6 +25,7 @@
       "@domain/*": ["./app/domain/*"],
       "@application/*": ["./app/application/*"],
       "@infrastructure/*": ["./app/infrastructure/*"],
+      "@presentation/*": ["./app/presentation/*"],
       "@env": ["./environments/environment"]
     }
   },

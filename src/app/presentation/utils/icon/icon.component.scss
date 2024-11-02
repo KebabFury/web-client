@@ -1,0 +1,13 @@
+.icon {
+  --_icon-size: 24px;
+
+  display: flex;
+  fill: currentColor;
+
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+
+  &--large {
+    --_icon-size: 32px;
+  }
+}
