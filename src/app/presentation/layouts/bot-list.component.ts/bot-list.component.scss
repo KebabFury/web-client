@@ -1,0 +1,226 @@
+@use 'sass:math';
+@use '../../../../scss/mixins/typography';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+$tablet-media: 950px;
+$phone-media: 500px;
+$phone-small-media: 400px;
+$yellow-main: #DCFE09;
+$pink-main: #DD0CF3;
+$bot-card: #FFFFFF1A;
+
+
+// .active {
+//     background-color: $yellow-main;
+//     /* измените цвет фона на свой выбор */
+// }
+
+.container-main {
+    // position: relative;
+    // margin-top: 138px;
+}
+
+// .header-wrapper {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     z-index: 10;
+// }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 32px;
+    padding-bottom: 0px;
+    // position: fixed;
+    // top: 0;
+    // right: 0;
+    // left: 0;
+    // z-index: 10;
+
+    // @media (max-width: $phone-media) {
+    //     padding: 8px;
+    // }
+
+    // @media (min-width: $phone-media) {
+    //     left: 80px;
+    // }
+
+    @media (min-width: $tablet-media) {
+        left: 280px;
+    }
+
+    &__buttons {
+        width: 100%;
+    }
+
+    &__search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 56px;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 24px;
+        padding-inline: 4px;
+        background-color: blue;
+        border: 1px solid rgb(100, 100, 251);
+
+        border: 2px solid var(--md-sys-color-on-surface);
+
+        &__icon {
+            color: rgb(104, 104, 152);
+        }
+
+    }
+
+    &__button {
+        // @media (max-width: $phone-media) {
+        //     position: fixed;
+        //     right: 8px;
+        //     bottom: 88px;
+        // }
+    }
+
+    input[type="text"] {
+        //border: solid 1px var(--primary-color);
+        height: min-content;
+        box-sizing: border-box;
+        background-color: unset;
+        color: rgb(143, 143, 248);
+        width: 100%;
+        border: none;
+
+        &::placeholder {
+            color: rgb(193, 193, 234);
+        }
+    }
+
+    textarea:focus,
+    input:focus {
+        outline: none;
+    }
+}
+
+.bot-list {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    padding-top: 16px;
+    gap: 16px;
+    justify-content: center;
+
+    @media (max-width: $phone-small-media) {
+        grid-template-columns: 1fr 120px 120px 1fr;
+    }
+
+    // @media (min-width: 380px) and (max-width: 480px) {
+    //     --_min-width-grid: 160px;
+    // }
+}
+
+.bot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 30px;
+    background: $bot-card;
+    padding: 16px;
+    padding-inline: 28px;
+    @include typography.body-large;
+
+    &:hover {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgb(39, 94, 35);
+            border-radius: 16px;
+            opacity: 0.08;
+        }
+
+        // cursor: pointer;
+
+        .bot__content__info__name {
+            color: rgb(127, 127, 228);
+            @include typography.body-large;
+        }
+
+        .bot__content__info__description {
+            color: rgb(144, 144, 240);
+        }
+    }
+
+    @media (max-width: $phone-small-media) {
+        grid-column: 2/-2;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-sizing: border-box;
+        gap: 16px;
+
+        &__avatar-stub {
+            padding: 32px;
+            border-radius: 32px;
+            background-color: $yellow-main;
+        }
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+
+            &__name {
+                color: white;
+            }
+
+            &__description {
+                color: #FFFFFFCC;
+                ;
+            }
+        }
+    }
+
+    &__status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $pink-main;
+
+        &.active {
+            color: $yellow-main;
+
+            .circle {
+                background-color: $yellow-main;
+            }
+        }
+
+        .circle {
+            background-color: $pink-main;
+            padding: 6px;
+            height: 0px;
+            border-radius: 16px;
+        }
+    }
+
+    &__toggle {
+        width: 24px;
+        height: 0px;
+        padding: 6px;
+        border-radius: 16px;
+        background-color: $pink-main;
+
+        &.active {
+            background-color: $yellow-main;
+        }
+    }
+}

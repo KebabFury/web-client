@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@forward 'scss/theme';
+@forward 'scss/mixins';
+
+@use 'scss/mixins/typography';
+html,
+body {
+  height: 100%;
+}
+
+h1 {
+  margin: unset;
+}
+
+body{
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: black;
+  color: var(--md-sys-color-on-background);
+
+  @include typography.body-medium;
+}

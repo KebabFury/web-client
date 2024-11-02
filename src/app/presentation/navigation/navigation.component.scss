@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+$tablet-media: 950px;
+$phone-media: 500px;
+$bot-card: #FFFFFF1A;
+
+.navigation {
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    box-sizing: border-box;
+    overflow: auto;
+    border-radius: 32px;
+    height: 100%;
+    background-color: $bot-card;
+
+    // background: var(--md-sys-color-surface-container-low);
+    width: 280px;
+
+    &__category {
+        display: flex;
+        flex-direction: column;
+
+        gap: 12px;
+        padding-bottom: 12px;
+        margin-top: 28px;
+        
+        &__name {
+            padding-inline: 28px;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 56px;
+            border-radius: 24px;
+            // background-color: rgb(72, 147, 122);
+            padding-left: 24px;
+
+            &__icon {
+            }
+        }
+    }
+}
