@@ -13,31 +13,18 @@ import { IconComponent } from 'app/presentation/utils/icon/icon.component';
   ],
   template: `
     <div class="container-main">
-
       <div class="header">
-
-        <!-- <div class="header__buttons">
-          <mat-button-toggle-group #group123="matButtonToggleGroup">
-            <mat-button-toggle (click)="onBaseProductsClick()" [ngClass]="{'active': isActiveBase}"> База продуктов </mat-button-toggle>
-            <mat-button-toggle (click)="onUserProductsClick()" [ngClass]="{'active': isActiveUser}"> Мои продукты </mat-button-toggle>
-            <mat-button-toggle (click)="addProductDialog()"> Добавить продукт </mat-button-toggle>
-          </mat-button-toggle-group>
-        </div> -->
-
         <p style="color: white; font-size: 28px; font-weight: 500;">Your Bots:</p>
-        <div class="header__search">
-          
-          <!-- <button mat-icon-button disabled="true">
-              <span class="header__search__icon">search</span>
-          </button> -->
-          <input type="text" placeholder="Поиск по имени" #filter>
-          <app-icon icon="search"></app-icon>
+        <div class="header__right">
+          <div class="header__right__search">
+            <input type="text" placeholder="Поиск по имени" #filter>
+            <app-icon icon="search"></app-icon>
+          </div>
+          <button class="add-button">
+            <app-icon  icon="search"></app-icon>
+          </button>
         </div>
-        <button style="">
-          <app-icon  icon="search"></app-icon>
-        </button>
       </div>
-      <!-- <p>Всего продуктов: {{products.length}}</p> -->
       
       <div class="bot-list">
         @for (product of productsFilteredList; track product) {

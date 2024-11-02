@@ -33,19 +33,24 @@ $bot-card: #FFFFFF1A;
         left: 280px;
     }
 
-    .header__search {
+    &__right {
         display: flex;
-        align-items: center;
-        background-color: $bot-card;
-        border-radius: 25px;
-        padding: 12px;
-        padding-left: 18px;
-    }
-    
-    .header__search__icon {
-        color: white;
-        font-size: 18px;
-        margin-right: 8px;
+        flex-direction: row;
+        gap: 16px;
+        &__search {
+            display: flex;
+            align-items: center;
+            background-color: $bot-card;
+            border-radius: 25px;
+            padding: 12px;
+            padding-left: 18px;
+            
+            &__icon {
+                color: white;
+                font-size: 18px;
+                margin-right: 8px;
+            }
+        }
     }
     
     .search-input {
@@ -81,6 +86,16 @@ $bot-card: #FFFFFF1A;
     textarea:focus,
     input:focus {
         outline: none;
+    }
+
+    .add-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+        width: 48px;
+        background-color: $yellow-main;
+        border-radius: 32px;
     }
 }
 
