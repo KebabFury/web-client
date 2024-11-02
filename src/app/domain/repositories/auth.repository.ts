@@ -11,4 +11,8 @@ export abstract class AuthRepository {
   ): Observable<UserSignInResponse>;
 
   public abstract signUp(request: UserSignUpRequest): Observable<void>;
+
+  public abstract signOut(): Observable<void>;
+
+  public abstract isAuthorized(): Observable<boolean>;
 }

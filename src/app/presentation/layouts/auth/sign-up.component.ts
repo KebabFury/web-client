@@ -1,96 +1,141 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UserSignUpRequest } from '@domain/dtos/requests/user-sign-up.request';
 import { AuthService } from '@domain/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
-<div class="wrapper">
-  <div class="register">
-    <span class="register__title">Create a new account</span>
-    <div class="login">
-      <span>Already have an account?</span>
-      <a class="login__button" (click)="logout()">Sign In</a>
+    <div class="wrapper">
+      <div class="register">
+        <span class="register__title">Create a new account</span>
+        <div class="login">
+          <span>Already have an account?</span>
+          <a
+            class="login__button"
+            (click)="signOut()">
+            Sign In
+          </a>
+        </div>
+        <form
+          class="register__form"
+          (ngSubmit)="signUp()">
+          <label
+            class="title"
+            for="name">
+            Name
+          </label>
+          <input
+            id="name"
+            [formControl]="form.controls.name" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.name)">
+            <small *ngIf="form.controls.name.errors?.['required']">
+              Name is required!
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="email">
+            Email
+          </label>
+          <input
+            id="email"
+            [formControl]="form.controls.email" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.email)">
+            <small *ngIf="form.controls.email.errors?.['required']">
+              Email is required!
+            </small>
+            <small *ngIf="form.controls.email.errors?.['email']">
+              Email is not valid
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="password">
+            Password
+          </label>
+          <input
+            id="password"
+            [formControl]="form.controls.password"
+            type="password" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.password)">
+            <small *ngIf="form.controls.password.errors?.['required']">
+              Password is required!
+            </small>
+          </div>
+
+          <div class="register__buttons">
+            <button
+              [disabled]="form.invalid"
+              type="submit">
+              Create Account
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    <form [formGroup]="bookForm" class="register__form" (ngSubmit)="register()">
-      <label class="title" for="name">Name</label>
-      <input id="name" formControlName="name" />
-      <div class="field-error" *ngIf="name.invalid && (name.dirty || name.touched)">
-        <small *ngIf="name.errors?.['required']">Name is required!</small>
-      </div>
-
-      <label class="title" for="email">Email</label>
-      <input id="email" formControlName="email" />
-      <div class="field-error" *ngIf="email.invalid && (email.dirty || email.touched)">
-        <small *ngIf="email.errors?.['required']">Email is required!</small>
-        <small *ngIf="email.errors?.['email']">Email is not valid</small>
-      </div>
-
-      <label class="title" for="password">Password</label>
-      <input type="password" id="password" formControlName="password" />
-      <div class="field-error" *ngIf="password.invalid && (password.dirty || password.touched)">
-        <small *ngIf="password.errors?.['required']">Password is required!</small>
-      </div>
-
-      <div class="register__buttons">
-        <button type="submit" [disabled]="bookForm.invalid">Create Account</button>
-      </div>
-    </form>
-  </div>
-</div>
   `,
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['sign-up.component.scss'],
+  host: { ngSkipHydration: 'true' },
 })
 export class SignUpComponent {
-  constructor(
-    private _router: Router,
-    private _authService: AuthService
-  ) { }
+  private readonly _authService = inject(AuthService);
+  private readonly _destroyRef = inject(DestroyRef);
 
-  bookForm = new FormGroup({
-    name: new FormControl<string>('', [Validators.required]),
-    email: new FormControl<string>('', [Validators.required, Validators.email]),
-    password: new FormControl<string>('', [Validators.required]),
+  protected readonly form = new FormGroup({
+    name: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    email: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+    password: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
-  public get name(): FormControl<string> {
-    return this.bookForm.get('name') as FormControl<string>;
-  }
+  protected readonly displayError = (control: FormControl<string>) =>
+    control.invalid && (control.dirty || control.touched);
 
-  public get email(): FormControl<string> {
-    return this.bookForm.get('email') as FormControl<string>;
-  }
-
-  public get password(): FormControl<string> {
-    return this.bookForm.get('password') as FormControl<string>;
-  }
-
-  public register(): void {
-    let registerModel: UserSignUpRequest = {
-      name: this.name.value,
-      email: this.email.value,
-      password: this.password.value
+  protected signUp(): void {
+    const request: UserSignUpRequest = {
+      name: this.form.controls.name.value,
+      email: this.form.controls.email.value,
+      password: this.form.controls.password.value,
     };
-    
-    this._authService.signUp(registerModel).subscribe({
-      next: () => {
-        this._router.navigate(['/sign-in']);
-      },
-      error: () => {
-        alert('Nope');
-      }
-    });
+
+    this._authService
+      .signUp(request)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        error: () => alert('Nope'),
+      });
   }
 
-  public logout(): void {
-    this._authService.logout();
+  protected signOut(): void {
+    this._authService
+      .signOut()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe();
   }
 }

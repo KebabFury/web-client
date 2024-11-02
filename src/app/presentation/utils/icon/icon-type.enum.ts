@@ -3,4 +3,5 @@ export enum IconType {
   ROBOT = 'robot',
   SETTINGS = 'settings',
   LOGOUT = 'logout',
+  PLUS = 'plus',
 }

@@ -1,46 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthApi } from '@application/apis/auth.api';
 import { UserSignInRequest } from '@domain/dtos/requests/user-sign-in.request';
 import { UserSignUpRequest } from '@domain/dtos/requests/user-sign-up.request';
-import { Observable } from 'rxjs';
+import { UserSignInResponse } from '@domain/dtos/responses/user-sign-in.response';
+import { AuthRepository } from '@domain/repositories/auth.repository';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    constructor(
-        private _router: Router,
-        private _authApi: AuthApi
-    ) {
+  private readonly _router = inject(Router);
+  private readonly _repository = inject(AuthRepository);
 
-    }
-
-  public get isAutorized(): boolean {
-    debugger;
-    if (typeof window === "undefined") {
-        return false;
-    }
-
-    const accesToken = window.localStorage.getItem('accesToken');
-    if (accesToken && accesToken !== '') {
-        return true;
-    }
-    
-    return false;
+  public isAuthorized(): Observable<boolean> {
+    return this._repository.isAuthorized();
   }
 
-  public signUp(registerModel: UserSignUpRequest): Observable<any> {
-    return this._authApi.signUp(registerModel);
+  public signUp(request: UserSignUpRequest): Observable<void> {
+    return this._repository
+      .signUp(request)
+      .pipe(tap(() => this._router.navigate(['/sign-in'])));
   }
 
-  public signIn(registerModel: UserSignInRequest): Observable<any> {
-    return this._authApi.signIn(registerModel);
+  public signIn(request: UserSignInRequest): Observable<UserSignInResponse> {
+    return this._repository
+      .signIn(request)
+      .pipe(tap(() => this._router.navigate(['/bots'])));
   }
 
-  public logout(): void {
-    window?.localStorage.setItem('accesToken', '');
-    window?.localStorage.setItem('userName', '');
-    window?.localStorage.setItem('userId', '');
-
-    this._router.navigate(['/sign-in']);
+  public signOut(): Observable<void> {
+    return this._repository
+      .signOut()
+      .pipe(tap(() => this._router.navigate(['/sign-in'])));
   }
 }
