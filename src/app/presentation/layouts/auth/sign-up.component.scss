@@ -1,0 +1,123 @@
+@use '../../../../scss/mixins/typography.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+$tablet-media: 950px;
+$tablet-small-media: 600px;
+$phone-media: 500px;
+$pink-main: #DD0CF3;
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5; // Легкий фон
+}
+
+input {
+    background-color: #77777738;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.field-error {
+    margin-top: -16px;
+    margin-bottom: 12px;
+}
+
+.title {
+    color: white;
+    @include typography.body-medium;
+}
+.register {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 0.116); // Белый фон для формы
+    border-radius: 12px;
+    // box-shadow: 0 4px 16px rgba(255, 255, 255, 0.101);
+    max-width: 400px; // Максимальная ширина формы
+    width: 100%;
+    
+    &__title {
+        font-size: 24px;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+
+            &:focus {
+                border-color: $pink-main; // Окрашиваем рамку в синий цвет при фокусе
+                outline: none;
+            }
+        }
+
+        small {
+            color: $pink-main; // Цвет для сообщений об ошибках
+            margin-top: -8px;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+
+        button {
+            padding: 10px 20px;
+            background-color: $pink-main;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: $pink-main; // Темнее при наведении
+            }
+
+            &:disabled {
+                background-color: #777777; // Отключенная кнопка
+                cursor: not-allowed; // Стрелка для отключенной кнопки
+            }
+        }
+    }
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+
+    span {
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    &__button {
+        color: $pink-main;
+        font-weight: bold;
+        margin-left: 5px;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline; // Подчеркивание при наведении
+        }
+    }
+}

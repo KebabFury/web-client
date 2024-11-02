@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './presentation/navigation/navigation.component';
+import { AuthService } from '@domain/services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
     CommonModule,
+    RouterOutlet,
     RouterModule,
     NavigationComponent
   ],
@@ -18,7 +19,7 @@ import { NavigationComponent } from './presentation/navigation/navigation.compon
 export class AppComponent {
   title = 'web-client';
 
-  // constructor(
-  //   public authService : AuthService
-  // ) {}
+  constructor(
+    public authService : AuthService
+  ) {}
 }

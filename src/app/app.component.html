@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="authService.isAutorized" class="container">
   <app-navigation></app-navigation>
 
   <main class="main">
@@ -6,12 +6,4 @@
   </main>
 </div>
 
-<!-- <div *ngIf="authService.isAutorized" class="container">
-  <cm-navigation></cm-navigation>
-
-  <main class="main">
-    <router-outlet></router-outlet>
-  </main>
-</div>
-
-<router-outlet *ngIf="authService.isNotAutorized"></router-outlet> -->
+<router-outlet *ngIf="!authService.isAutorized"></router-outlet>
