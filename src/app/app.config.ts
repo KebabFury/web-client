@@ -1,12 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideApplication } from '@application/providers';
-import { provideInfrastructureMock } from '@infrastructure/providers';
+import { jwtInterceptor } from '@infrastructure/interceptors/jwt.interceptor';
+import { provideInfrastructure } from '@infrastructure/providers';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -14,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     ...provideApplication(),
-    ...provideInfrastructureMock(),
-    provideHttpClient(withInterceptorsFromDi()),
+    ...provideInfrastructure(),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
   ],
 };

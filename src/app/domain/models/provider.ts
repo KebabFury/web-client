@@ -1,4 +1,4 @@
-export interface Provider {
+export interface CustomProvider {
   readonly id: string;
   readonly name: string;
   readonly actionCode: string;
@@ -10,10 +10,4 @@ export interface Provider {
   readonly tokenEndpoint: string;
   readonly redirectUri: string;
   readonly scope: string;
-}
-
-export interface ProviderLight {
-  readonly name: string;
-  readonly actionCode: string;
-  readonly documentation: string;
 }

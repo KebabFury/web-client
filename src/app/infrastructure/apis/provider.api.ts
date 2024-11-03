@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { ProviderApi } from '@application/apis/provider.api';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderCreateResponse } from '@domain/dtos/responses/provider-create.response';
-import { ProviderLight } from '@domain/models/provider';
+import { CustomProvider } from '@domain/models/provider';
 import { environment } from '@env';
 import { Observable } from 'rxjs';
 
@@ -11,16 +11,16 @@ import { Observable } from 'rxjs';
 export class ProviderApiImpl extends ProviderApi {
   private readonly _http = inject(HttpClient);
 
-  public get(): Observable<readonly ProviderLight[]> {
-    return this._http.get<readonly ProviderLight[]>(
-      `${environment.api}/Provider/get-all`
+  public get(): Observable<readonly CustomProvider[]> {
+    return this._http.get<readonly CustomProvider[]>(
+      `${environment.api}/provider/list-all`
     );
   }
   public create(
     request: ProviderCreateRequest
   ): Observable<ProviderCreateResponse> {
     return this._http.post(
-      `${environment.api}/Provider/create-provider`,
+      `${environment.api}/provider/create-provider`,
       request
     );
   }

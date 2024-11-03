@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthApiImpl extends AuthApi {
   private readonly _http = inject(HttpClient);
-  private readonly _prefix = `${environment.api}/User`;
+  private readonly _prefix = `${environment.api}/user`;
 
   public signIn(request: UserSignInRequest): Observable<UserSignInResponse> {
     return this._http.post<UserSignInResponse>(

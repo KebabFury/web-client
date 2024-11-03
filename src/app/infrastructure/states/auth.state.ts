@@ -8,9 +8,10 @@ export class AuthStateImpl extends AuthState {
   private readonly _tokenKey = 'accessToken';
 
   public isAuthorized(): Observable<boolean> {
-    return fromStorageState(this._tokenKey).pipe(
-      map(token => token !== undefined)
-    );
+    return this.getToken().pipe(map(token => token !== undefined));
+  }
+  public getToken(): Observable<string | undefined> {
+    return fromStorageState(this._tokenKey);
   }
   public signOut(): Observable<void> {
     return of(LocalStorageState.setItem(this._tokenKey));

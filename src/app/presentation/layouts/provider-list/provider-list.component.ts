@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterModule } from '@angular/router';
-import { ProviderLight } from '@domain/models/provider';
+import { CustomProvider } from '@domain/models/provider';
 import { ProviderService } from '@domain/services/provider.service';
 import { IconType } from '@presentation/utils/icon/icon-type.enum';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
@@ -74,7 +74,7 @@ export class ProviderListComponent implements OnInit {
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _router = inject(Router);
 
-  protected readonly providers = signal<readonly ProviderLight[]>([]);
+  protected readonly providers = signal<readonly CustomProvider[]>([]);
 
   private readonly _icons: readonly IconType[] = [
     IconType.BUBBLE,

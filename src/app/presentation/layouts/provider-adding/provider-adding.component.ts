@@ -6,8 +6,14 @@ import {
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderService } from '@domain/services/provider.service';
 import { LocalStorageState } from '@infrastructure/states/storage.state';
@@ -28,23 +34,25 @@ declare const SwaggerEditorStandalonePreset: any;
     TwoSideTemplateComponent,
     NavigationComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   template: `
     <div class="arrow-back" (click)="back()">
       <app-icon [icon]="IconType.BACK"/>
     </div>
     <app-two-side-template>
-      <div left class="left">
-        <form class="form-content" (ngSubmit)="submit()">
+      <div left>
+        <form
+          class="form-content"
+          (ngSubmit)="submit()">
           <label
             class="title"
             for="name">
             Name
           </label>
-            <input
-              id="name"
-              [formControl]="form.controls.name" />
+          <input
+            id="name"
+            [formControl]="form.controls.name" />
           <div
             class="field-error"
             *ngIf="displayError(form.controls.name)">
@@ -69,7 +77,6 @@ declare const SwaggerEditorStandalonePreset: any;
             </small>
           </div>
 
-          
           <label
             class="title"
             for="clientId">
@@ -113,7 +120,8 @@ declare const SwaggerEditorStandalonePreset: any;
           <div
             class="field-error"
             *ngIf="displayError(form.controls.authorizationEndpoint)">
-            <small *ngIf="form.controls.authorizationEndpoint.errors?.['required']">
+            <small
+              *ngIf="form.controls.authorizationEndpoint.errors?.['required']">
               Authorization endpoint is required!
             </small>
           </div>
@@ -159,7 +167,9 @@ declare const SwaggerEditorStandalonePreset: any;
           </div>
         </form>
       </div>
-      <div class="container-main" right>
+      <div
+        class="container-main"
+        right>
         <div id="swagger-editor"></div>
       </div>
     </app-two-side-template>
@@ -224,7 +234,7 @@ export class ProviderAddingComponent {
   protected submit(): void {
     const request: ProviderCreateRequest = {
       name: this.form.controls.name.value,
-      description: this.form.controls.description.value,
+      providerDescription: this.form.controls.description.value,
       clientId: this.form.controls.clientId.value,
       clientSecret: this.form.controls.clientSecret.value,
       authorizationEndpoint: this.form.controls.authorizationEndpoint.value,
