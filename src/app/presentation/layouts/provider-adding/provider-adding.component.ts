@@ -227,7 +227,7 @@ export class ProviderAddingComponent {
       dom_id: '#swagger-editor',
       layout: 'StandaloneLayout',
       presets: [SwaggerEditorStandalonePreset],
-      url: 'http://rackerlabs.github.io/wadl2swagger/openstack/swagger/dbaas.json',
+      url: 'https://petstore.swagger.io/v2/swagger.json',
     });
   }
 

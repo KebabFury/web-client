@@ -70,6 +70,7 @@ import { AuthService } from '@domain/services/auth.service';
           <div class="register__buttons">
             <button
               [disabled]="form.invalid"
+              style="width: 100%; color: black"
               type="submit">
               Sign In
             </button>

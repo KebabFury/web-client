@@ -87,6 +87,7 @@ import { tap } from 'rxjs';
           <div class="register__buttons">
             <button
               [disabled]="form.invalid"
+              style="width: 100%; color: black"
               type="submit">
               Create Account
             </button>
