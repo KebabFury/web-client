@@ -13,216 +13,234 @@ $bot-card: #ffffff1a;
 // ======================================================
 
 .arrow-back {
-    position: absolute;
-    color: white;
-    top: 32px;
-    left: 32px;
+  position: absolute;
+  color: white;
+  top: 32px;
+  left: 32px;
 
-    :hover {
-        cursor: pointer;
-    }
+  :hover {
+    cursor: pointer;
+  }
 }
 
 input {
-    color: white;
-    background-color: #77777738;
+  color: white;
+  background-color: #77777738;
 }
 
 .left {
-    display: flex;
-    align-items: end;
+  display: flex;
+  align-items: end;
 }
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .field-error {
-    color: $pink-main;
-    margin-top: -16px;
-    position: relative;
-    top: -36px;
-    left: 12px;
-    pointer-events: none;
+  color: $pink-main;
+  margin-top: -16px;
+  position: relative;
+  top: -36px;
+  left: 12px;
+  pointer-events: none;
 }
 
 .title {
-    color: white;
-    @include typography.body-medium;
+  color: white;
+  @include typography.body-medium;
 }
 
 .form-content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    input {
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 2px solid #ccc;
-        border-radius: 6px;
-        font-size: 16px;
-        transition: border-color 0.3s;
+  input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
 
-        &:focus {
-            border-color: $pink-main; // Окрашиваем рамку в синий цвет при фокусе
-            outline: none;
-        }
+    &:focus {
+      border-color: $pink-main; // Окрашиваем рамку в синий цвет при фокусе
+      outline: none;
     }
+  }
 }
 
 .submit__buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
 
-    button {
-        padding: 10px 20px;
-        background-color: $pink-main;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s;
+  button {
+    padding: 10px 20px;
+    background-color: $pink-main;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 
-        &:hover {
-            background-color: $pink-main; // Темнее при наведении
-        }
-
-        &:disabled {
-            background-color: #777777; // Отключенная кнопка
-            cursor: not-allowed; // Стрелка для отключенной кнопки
-        }
+    &:hover {
+      background-color: $pink-main; // Темнее при наведении
     }
+
+    &:disabled {
+      background-color: #777777; // Отключенная кнопка
+      cursor: not-allowed; // Стрелка для отключенной кнопки
+    }
+  }
 }
 
 .login {
-    display: flex;
-    justify-content: center;
-    padding-top: 16px;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
 
-    span {
-        font-size: 14px;
-        color: #ffffff;
+  span {
+    font-size: 14px;
+    color: #ffffff;
+  }
+
+  &__button {
+    color: $pink-main;
+    font-weight: bold;
+    margin-left: 5px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline; // Подчеркивание при наведении
     }
-
-    &__button {
-        color: $pink-main;
-        font-weight: bold;
-        margin-left: 5px;
-        cursor: pointer;
-
-        &:hover {
-            text-decoration: underline; // Подчеркивание при наведении
-        }
-    }
+  }
 }
-
 
 // ======================================================
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .container-main {
-    background: #f0f8ff33;
-    margin-left: 32px;
-    border-radius: 32px;
-    //   padding: 16px;
-    box-sizing: border-box;
-    height: 100%;
-    overflow: hidden;
+  background: #f0f8ff33;
+  margin-left: 32px;
+  border-radius: 32px;
+  //   padding: 16px;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
 }
 
 .SplitPane {
-    position: unset !important;
+  position: unset !important;
 }
 
 .swagger-ui {
-    .wrapper {
-        max-height: 400px;
-        overflow: hidden;
-        overflow-y: auto;
-    }
+  .wrapper {
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
 }
 
 .topbar-wrapper {
-    a {
-        pointer-events: none;
-    }
+  a {
+    pointer-events: none;
+  }
 }
 
-.topbar-wrapper .dd-menu:nth-last-child(-n+3) {
-    display: none;
-    /* Скрываем последние три блока */
+.topbar-wrapper .dd-menu:nth-last-child(-n + 3) {
+  display: none;
+  /* Скрываем последние три блока */
 }
 
 .swagger-editor .swagger-ui .opblock-tag {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .wrapper {
-    height: min-content;
+  height: min-content;
 }
 
 .swagger-editor .swagger-ui .opblock .opblock-summary-description {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .opblock .opblock-summary-operation-id,
 .swagger-editor .swagger-ui .opblock .opblock-summary-path,
 .swagger-editor .swagger-ui .opblock .opblock-summary-path__deprecated {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .opblock-control-arrow {
-    fill: white;
+  fill: white;
 }
 
 .swagger-editor .swagger-ui .expand-methods,
 .swagger-editor .swagger-ui .expand-operation {
-    fill: white;
+  fill: white;
 }
 
 .swagger-editor .swagger-ui .opblock-description-wrapper p,
 .swagger-editor .swagger-ui .opblock-external-docs-wrapper p,
 .swagger-editor .swagger-ui .opblock-title_normal p {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .response-col_status {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui table thead tr td,
 .swagger-editor .swagger-ui table thead tr th {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .parameter__name {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .parameter__extension,
 .swagger-editor .swagger-ui .parameter__in {
-    color: #bdbdbd;
+  color: #bdbdbd;
 }
 
 .swagger-editor .swagger-ui .info .title {
-    color: white;
+  color: white;
 }
 
 .swagger-editor .swagger-ui .opblock .opblock-section-header {
-    background: hsl(0deg 0% 100% / 51%);
+  background: hsl(0deg 0% 100% / 51%);
 }
 
 .swagger-editor .swagger-ui .tab li {
-    color: white;
+  color: white;
+}
+
+.Pane2 {
+  overflow-y: scroll;
+}
+
+.swagger-ui .wrapper {
+  max-height: unset;
+}
+
+#swagger-editor,
+#swagger-editor > *,
+.swagger-editor,
+.swagger-editor > *,
+#editor-wrapper,
+#ace-editor#ace-editor,
+.ace_gutter,
+.ace_scroller {
+  height: 100% !important;
 }

@@ -17,10 +17,10 @@ import { Router, RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderService } from '@domain/services/provider.service';
 import { LocalStorageState } from '@infrastructure/states/storage.state';
+import { IconType } from '@presentation/utils/icon/icon-type.enum';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
 import { NavigationComponent } from '../../navigation/navigation.component';
 import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-side-template.component';
-import { IconType } from '@presentation/utils/icon/icon-type.enum';
 declare const SwaggerEditorBundle: any;
 declare const SwaggerEditorStandalonePreset: any;
 
@@ -37,11 +37,15 @@ declare const SwaggerEditorStandalonePreset: any;
     FormsModule,
   ],
   template: `
-    <div class="arrow-back" (click)="back()">
-      <app-icon [icon]="IconType.BACK"/>
+    <div
+      class="arrow-back"
+      (click)="back()">
+      <app-icon [icon]="IconType.BACK" />
     </div>
     <app-two-side-template>
-      <div left>
+      <div
+        style="width: 100%"
+        left>
         <form
           class="form-content"
           (ngSubmit)="submit()">
@@ -161,7 +165,8 @@ declare const SwaggerEditorStandalonePreset: any;
           <div class="submit__buttons">
             <button
               [disabled]="form.invalid"
-              type="submit">
+              type="submit"
+              style="width: 100%">
               Create Account
             </button>
           </div>
@@ -241,7 +246,11 @@ export class ProviderAddingComponent {
       authorizationEndpoint: this.form.controls.authorizationEndpoint.value,
       tokenEndpoint: this.form.controls.tokenEndpoint.value,
       scope: this.form.controls.scope.value,
-      swaggerJson: LocalStorageState.getItem(this._key) ?? '{}',
+      swaggerJson: JSON.stringify(
+        JSON.parse(
+          LocalStorageState.getItem(this._key)?.replaceAll('\\n', '') ?? '{}'
+        )
+      ),
     };
 
     this._service
