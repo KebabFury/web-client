@@ -6,213 +6,217 @@
 $tablet-media: 950px;
 $phone-media: 500px;
 $phone-small-media: 400px;
-$yellow-main: #DCFE09;
-$pink-main: #DD0CF3;
-$bot-card: #FFFFFF1A;
+$yellow-main: #dcfe09;
+$pink-main: #dd0cf3;
+$bot-card: #ffffff1a;
 
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .container-main {
-    // position: relative;
-    // margin-top: 138px;
+  // position: relative;
+  // margin-top: 138px;
 }
 
-
 .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 32px;
+  padding-bottom: 0px;
+
+  @media (min-width: $tablet-media) {
+    left: 280px;
+  }
+
+  &__right {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     gap: 16px;
-    padding: 32px;
-    padding-bottom: 0px;
+    &__search {
+      display: flex;
+      align-items: center;
+      background-color: $bot-card;
+      border-radius: 25px;
+      padding: 12px;
+      padding-left: 18px;
 
-    @media (min-width: $tablet-media) {
-        left: 280px;
+      &__icon {
+        color: white;
+        font-size: 18px;
+        margin-right: 8px;
+      }
     }
+  }
 
-    &__right {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-        &__search {
-            display: flex;
-            align-items: center;
-            background-color: $bot-card;
-            border-radius: 25px;
-            padding: 12px;
-            padding-left: 18px;
-            
-            &__icon {
-                color: white;
-                font-size: 18px;
-                margin-right: 8px;
-            }
-        }
-    }
-    
-    .search-input {
-        flex: 1; /* Позволяет input занять оставшееся пространство */
-        background-color: transparent; /* Прозрачный фон для input */
-        border: none; /* Убираем стандартные границы */
-        color: #ffffff; /* Белый текст */
-        outline: none; /* Убираем обводку при фокусе */
-        border-radius: 20px; /* Закруглённые углы для input */
-        padding: 8px; /* Отступ внутри input */
-        font-size: 16px; /* Размер текста */
-    }
-    
-    .search-input:focus {
-        background-color: rgba(255, 255, 255, 0.1); /* Легкий фоновый цвет при фокусе */
-        border-radius: 20px; /* Убедитесь, что углы остаются закруглёнными */
-    }
+  .search-input {
+    flex: 1; /* Позволяет input занять оставшееся пространство */
+    background-color: transparent; /* Прозрачный фон для input */
+    border: none; /* Убираем стандартные границы */
+    color: #ffffff; /* Белый текст */
+    outline: none; /* Убираем обводку при фокусе */
+    border-radius: 20px; /* Закруглённые углы для input */
+    padding: 8px; /* Отступ внутри input */
+    font-size: 16px; /* Размер текста */
+  }
 
-    input[type="text"] {
-        //border: solid 1px var(--primary-color);
-        height: min-content;
-        box-sizing: border-box;
-        background-color: unset;
-        color: rgb(186, 186, 186);
-        width: 100%;
-        border: none;
+  .search-input:focus {
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.1
+    ); /* Легкий фоновый цвет при фокусе */
+    border-radius: 20px; /* Убедитесь, что углы остаются закруглёнными */
+  }
 
-        &::placeholder {
-            color: rgb(179, 179, 179);
-        }
-    }
+  input[type='text'] {
+    //border: solid 1px var(--primary-color);
+    height: min-content;
+    box-sizing: border-box;
+    background-color: unset;
+    color: rgb(186, 186, 186);
+    width: 100%;
+    border: none;
 
-    textarea:focus,
-    input:focus {
-        outline: none;
+    &::placeholder {
+      color: rgb(179, 179, 179);
     }
+  }
 
-    .add-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 48px;
-        width: 48px;
-        background-color: $yellow-main;
-        border-radius: 32px;
-    }
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+
+  .add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    background-color: $yellow-main;
+    border-radius: 32px;
+  }
 }
 
 .bot-list {
-    display: flex;
-    flex-direction: column;
-    padding: 32px;
-    padding-top: 16px;
-    gap: 16px;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  padding-top: 16px;
+  gap: 16px;
+  justify-content: center;
 
-    @media (max-width: $phone-small-media) {
-        grid-template-columns: 1fr 120px 120px 1fr;
-    }
+  @media (max-width: $phone-small-media) {
+    grid-template-columns: 1fr 120px 120px 1fr;
+  }
 
-    // @media (min-width: 380px) and (max-width: 480px) {
-    //     --_min-width-grid: 160px;
-    // }
+  // @media (min-width: 380px) and (max-width: 480px) {
+  //     --_min-width-grid: 160px;
+  // }
 }
 
 .bot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  background: $bot-card;
+  padding: 16px;
+  padding-inline: 28px;
+  @include typography.body-large;
+
+  &:hover {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgb(39, 94, 35);
+      border-radius: 16px;
+      opacity: 0.08;
+    }
+
+    cursor: pointer;
+
+    .bot__content__info__name {
+      color: rgb(240, 245, 183);
+      @include typography.body-large;
+    }
+
+    .bot__content__info__description {
+      color: rgb(240, 245, 183);
+    }
+  }
+
+  @media (max-width: $phone-small-media) {
+    grid-column: 2/-2;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    gap: 16px;
+
+    &__avatar-stub {
+      padding: 12px;
+      border-radius: 20px;
+      background-color: $yellow-main;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+
+      &__name {
+        color: white;
+      }
+
+      &__description {
+        color: #ffffffcc;
+      }
+    }
+  }
+
+  &__status {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-radius: 30px;
-    background: $bot-card;
-    padding: 16px;
-    padding-inline: 28px;
-    @include typography.body-large;
+    gap: 8px;
+    color: $pink-main;
 
-    &:hover {
-        position: relative;
+    &.active {
+      color: $yellow-main;
 
-        &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgb(39, 94, 35);
-            border-radius: 16px;
-            opacity: 0.08;
-        }
-
-        cursor: pointer;
-
-        .bot__content__info__name {
-            color: rgb(240, 245, 183);
-            @include typography.body-large;
-        }
-
-        .bot__content__info__description {
-            color: rgb(240, 245, 183);
-        }
+      .circle {
+        background-color: $yellow-main;
+      }
     }
 
-    @media (max-width: $phone-small-media) {
-        grid-column: 2/-2;
+    .circle {
+      background-color: $pink-main;
+      padding: 6px;
+      height: 0px;
+      border-radius: 16px;
     }
+  }
 
-    &__content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        box-sizing: border-box;
-        gap: 16px;
+  &__toggle {
+    width: 24px;
+    height: 0px;
+    padding: 6px;
+    border-radius: 16px;
+    background-color: $pink-main;
 
-        &__avatar-stub {
-            padding: 12px;
-            border-radius: 20px;
-            background-color: $yellow-main;
-        }
-
-        &__info {
-            display: flex;
-            flex-direction: column;
-
-            &__name {
-                color: white;
-            }
-
-            &__description {
-                color: #FFFFFFCC;
-                ;
-            }
-        }
+    &.active {
+      background-color: $yellow-main;
     }
-
-    &__status {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: $pink-main;
-
-        &.active {
-            color: $yellow-main;
-
-            .circle {
-                background-color: $yellow-main;
-            }
-        }
-
-        .circle {
-            background-color: $pink-main;
-            padding: 6px;
-            height: 0px;
-            border-radius: 16px;
-        }
-    }
-
-    &__toggle {
-        width: 24px;
-        height: 0px;
-        padding: 6px;
-        border-radius: 16px;
-        background-color: $pink-main;
-
-        &.active {
-            background-color: $yellow-main;
-        }
-    }
+  }
 }
+

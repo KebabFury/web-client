@@ -45,7 +45,7 @@ import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-
                 <div class="bot__content__avatar-stub">
                   <app-icon
                     class="d-flex"
-                    [icon]="IconType.ROBOT" />
+                    [icon]="getIcon(provider.name)" />
                 </div>
                 <div class="bot__content__info">
                   <span class="bot__content__info__name">{{
@@ -75,6 +75,23 @@ export class ProviderListComponent implements OnInit {
   private readonly _router = inject(Router);
 
   protected readonly providers = signal<readonly ProviderLight[]>([]);
+
+  private readonly _icons: readonly IconType[] = [
+    IconType.BUBBLE,
+    IconType.COMFY,
+    IconType.EVA,
+    IconType.MAC,
+    IconType.DISPLAY,
+    IconType.ASSISTANT,
+  ];
+
+  protected readonly getIcon = (id: string) =>
+    this._icons[
+      id
+        .split('')
+        .map((_, index) => id.charCodeAt(index))
+        .reduce((acc, cur) => acc + cur, 0) % this._icons.length
+    ];
 
   protected readonly IconType = IconType;
 
