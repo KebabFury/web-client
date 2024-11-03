@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderService } from '@domain/services/provider.service';
@@ -26,13 +26,136 @@ declare const SwaggerEditorStandalonePreset: any;
     IconComponent,
     TwoSideTemplateComponent,
     NavigationComponent,
+    ReactiveFormsModule,
+    FormsModule
   ],
   template: `
     <app-two-side-template>
-      <app-navigation left />
-      <div
-        class="container-main"
-        right>
+      <div left>
+        <form class="form-content" (ngSubmit)="submit()">
+          <label
+            class="title"
+            for="name">
+            Name
+          </label>
+            <input
+              id="name"
+              [formControl]="form.controls.name" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.name)">
+            <small *ngIf="form.controls.name.errors?.['required']">
+              Name is required!
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="description">
+            Description
+          </label>
+          <input
+            id="description"
+            [formControl]="form.controls.description" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.description)">
+            <small *ngIf="form.controls.description.errors?.['required']">
+              Description is required!
+            </small>
+          </div>
+
+          
+          <label
+            class="title"
+            for="clientId">
+            ClientId
+          </label>
+          <input
+            id="clientId"
+            [formControl]="form.controls.clientId" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.clientId)">
+            <small *ngIf="form.controls.clientId.errors?.['required']">
+              ClientId is required!
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="clientSecret">
+            ClientSecret
+          </label>
+          <input
+            id="clientSecret"
+            [formControl]="form.controls.clientSecret" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.clientSecret)">
+            <small *ngIf="form.controls.clientSecret.errors?.['required']">
+              ClientSecret is required!
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="authorizationEndpoint">
+            AuthorizationEndpoint
+          </label>
+          <input
+            id="authorizationEndpoint"
+            [formControl]="form.controls.authorizationEndpoint" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.authorizationEndpoint)">
+            <small *ngIf="form.controls.authorizationEndpoint.errors?.['required']">
+              AuthorizationEndpoint is required!
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="tokenEndpoint">
+            TokenEndpoint
+          </label>
+          <input
+            id="tokenEndpoint"
+            [formControl]="form.controls.tokenEndpoint" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.tokenEndpoint)">
+            <small *ngIf="form.controls.tokenEndpoint.errors?.['required']">
+              TokenEndpoint is required!
+            </small>
+          </div>
+
+          <label
+            class="title"
+            for="scope">
+            Scope
+          </label>
+          <input
+            id="scope"
+            [formControl]="form.controls.scope" />
+          <div
+            class="field-error"
+            *ngIf="displayError(form.controls.scope)">
+            <small *ngIf="form.controls.scope.errors?.['required']">
+              Scope is required!
+            </small>
+          </div>
+
+          <div class="submit__buttons">
+            <button
+              [disabled]="form.invalid"
+              type="submit">
+              Create Account
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="container-main" right>
         <div id="swagger-editor"></div>
       </div>
     </app-two-side-template>
@@ -48,6 +171,10 @@ export class ProviderAddingComponent {
 
   protected readonly form = new FormGroup({
     name: new FormControl<string>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl<string>('', {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -82,9 +209,13 @@ export class ProviderAddingComponent {
     });
   }
 
+  protected readonly displayError = (control: FormControl<string>) =>
+    control.invalid && (control.dirty || control.touched);
+  
   protected submit(): void {
     const request: ProviderCreateRequest = {
       name: this.form.controls.name.value,
+      description: this.form.controls.description.value,
       clientId: this.form.controls.clientId.value,
       clientSecret: this.form.controls.clientSecret.value,
       authorizationEndpoint: this.form.controls.authorizationEndpoint.value,

@@ -1,5 +1,6 @@
 export interface ProviderCreateRequest {
   readonly name: string;
+  readonly description: string;
   readonly swaggerJson: string;
   readonly clientId: string;
   readonly clientSecret: string;

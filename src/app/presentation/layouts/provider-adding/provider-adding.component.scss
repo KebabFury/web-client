@@ -10,22 +10,117 @@ $yellow-main: #dcfe09;
 $pink-main: #dd0cf3;
 $bot-card: #ffffff1a;
 
+// ======================================================
+
+input {
+    color: white;
+    background-color: #77777738;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.field-error {
+    color: $pink-main;
+    margin-top: -16px;
+    margin-bottom: 12px;
+}
+
+.title {
+    color: white;
+    @include typography.body-medium;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+
+        &:focus {
+            border-color: $pink-main; // Окрашиваем рамку в синий цвет при фокусе
+            outline: none;
+        }
+    }
+}
+
+.submit__buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+
+    button {
+        padding: 10px 20px;
+        background-color: $pink-main;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $pink-main; // Темнее при наведении
+        }
+
+        &:disabled {
+            background-color: #777777; // Отключенная кнопка
+            cursor: not-allowed; // Стрелка для отключенной кнопки
+        }
+    }
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+
+    span {
+        font-size: 14px;
+        color: #ffffff;
+    }
+
+    &__button {
+        color: $pink-main;
+        font-weight: bold;
+        margin-left: 5px;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline; // Подчеркивание при наведении
+        }
+    }
+}
+
+
+// ======================================================
 .d-flex {
-  display: flex;
+    display: flex;
 }
 
 .container-main {
-  background: #f0f8ff33;
-  margin-left: 32px;
-  border-radius: 32px;
-//   padding: 16px;
-  box-sizing: border-box;
-  height: 100%;
-  overflow: hidden;
+    background: #f0f8ff33;
+    margin-left: 32px;
+    border-radius: 32px;
+    //   padding: 16px;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
 }
 
 .SplitPane {
-  position: unset !important;
+    position: unset !important;
 }
 
 .swagger-ui {
@@ -41,19 +136,27 @@ $bot-card: #ffffff1a;
         pointer-events: none;
     }
 }
+
 .topbar-wrapper .dd-menu:nth-last-child(-n+3) {
-    display: none; /* Скрываем последние три блока */
+    display: none;
+    /* Скрываем последние три блока */
 }
 
 .swagger-editor .swagger-ui .opblock-tag {
     color: white;
 }
 
+.swagger-editor .swagger-ui .wrapper {
+    height: min-content;
+}
+
 .swagger-editor .swagger-ui .opblock .opblock-summary-description {
     color: white;
 }
 
-.swagger-editor .swagger-ui .opblock .opblock-summary-operation-id, .swagger-editor .swagger-ui .opblock .opblock-summary-path, .swagger-editor .swagger-ui .opblock .opblock-summary-path__deprecated {
+.swagger-editor .swagger-ui .opblock .opblock-summary-operation-id,
+.swagger-editor .swagger-ui .opblock .opblock-summary-path,
+.swagger-editor .swagger-ui .opblock .opblock-summary-path__deprecated {
     color: white;
 }
 
@@ -61,11 +164,14 @@ $bot-card: #ffffff1a;
     fill: white;
 }
 
-.swagger-editor .swagger-ui .expand-methods, .swagger-editor .swagger-ui .expand-operation {
+.swagger-editor .swagger-ui .expand-methods,
+.swagger-editor .swagger-ui .expand-operation {
     fill: white;
 }
 
-.swagger-editor .swagger-ui .opblock-description-wrapper p, .swagger-editor .swagger-ui .opblock-external-docs-wrapper p, .swagger-editor .swagger-ui .opblock-title_normal p {
+.swagger-editor .swagger-ui .opblock-description-wrapper p,
+.swagger-editor .swagger-ui .opblock-external-docs-wrapper p,
+.swagger-editor .swagger-ui .opblock-title_normal p {
     color: white;
 }
 
@@ -77,7 +183,8 @@ $bot-card: #ffffff1a;
     color: white;
 }
 
-.swagger-editor .swagger-ui table thead tr td, .swagger-editor .swagger-ui table thead tr th {
+.swagger-editor .swagger-ui table thead tr td,
+.swagger-editor .swagger-ui table thead tr th {
     color: white;
 }
 
@@ -85,7 +192,8 @@ $bot-card: #ffffff1a;
     color: white;
 }
 
-.swagger-editor .swagger-ui .parameter__extension, .swagger-editor .swagger-ui .parameter__in {
+.swagger-editor .swagger-ui .parameter__extension,
+.swagger-editor .swagger-ui .parameter__in {
     color: #bdbdbd;
 }
 
