@@ -18,6 +18,9 @@ $bot-card: #FFFFFF1A;
     // background: var(--md-sys-color-surface-container-low);
     width: 280px;
 
+    app-icon {
+        color: white;
+    }
     &__category {
         display: flex;
         flex-direction: column;
