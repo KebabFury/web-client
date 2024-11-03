@@ -6,19 +6,23 @@
 $tablet-media: 950px;
 $phone-media: 500px;
 $phone-small-media: 400px;
-$yellow-main: #DCFE09;
-$pink-main: #DD0CF3;
-$bot-card: #FFFFFF1A;
+$yellow-main: #dcfe09;
+$pink-main: #dd0cf3;
+$bot-card: #ffffff1a;
 
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .container-main {
-    background: #f0f8ff33;
-    margin-left: 32px;
-    border-radius: 32px;
-    padding: 16px;
-    box-sizing: border-box;
-    height: 100%;
+  background: #f0f8ff33;
+  margin-left: 32px;
+  border-radius: 32px;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.SplitPane {
+  position: unset !important;
 }
