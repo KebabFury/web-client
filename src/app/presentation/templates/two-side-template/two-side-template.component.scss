@@ -1,0 +1,16 @@
+.two-side-template-container {
+  height: 100%;
+  margin: 0px;
+  display: grid;
+  box-sizing: border-box;
+  padding: 32px;
+  grid-template-columns: 280px 1fr;
+}
+
+.two-side-template-container .right {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}

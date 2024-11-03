@@ -52,9 +52,9 @@ import { AuthService } from '@domain/services/auth.service';
 
           <label
             class="title"
-            for="password"
-            >Пароль</label
-          >
+            for="password">
+            Password
+          </label>
           <input
             id="password"
             [formControl]="form.controls.password"
@@ -86,11 +86,11 @@ export class SignInComponent {
   private readonly _destroyRef = inject(DestroyRef);
 
   protected form = new FormGroup({
-    email: new FormControl<string>('', {
+    email: new FormControl<string>('innopolice@gmail.com', {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
     }),
-    password: new FormControl<string>('', {
+    password: new FormControl<string>('babadji-babadji-babadjiii', {
       nonNullable: true,
       validators: [Validators.required],
     }),
@@ -109,6 +109,7 @@ export class SignInComponent {
       .signIn(request)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
+        next: () => this._router.navigate(['/providers']),
         error: () => alert('Nope'),
       });
   }

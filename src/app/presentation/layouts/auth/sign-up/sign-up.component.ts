@@ -8,8 +8,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserSignUpRequest } from '@domain/dtos/requests/user-sign-up.request';
 import { AuthService } from '@domain/services/auth.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -98,6 +100,7 @@ import { AuthService } from '@domain/services/auth.service';
 export class SignUpComponent {
   private readonly _authService = inject(AuthService);
   private readonly _destroyRef = inject(DestroyRef);
+  private readonly _router = inject(Router);
 
   protected readonly form = new FormGroup({
     name: new FormControl<string>('', {
@@ -128,6 +131,7 @@ export class SignUpComponent {
       .signUp(request)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
+        next: () => this._router.navigate(['/sign-in']),
         error: () => alert('Nope'),
       });
   }
@@ -135,7 +139,10 @@ export class SignUpComponent {
   protected signOut(): void {
     this._authService
       .signOut()
-      .pipe(takeUntilDestroyed(this._destroyRef))
+      .pipe(
+        tap(() => this._router.navigate(['/sign-in'])),
+        takeUntilDestroyed(this._destroyRef)
+      )
       .subscribe();
   }
 }

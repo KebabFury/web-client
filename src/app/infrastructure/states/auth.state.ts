@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthState } from '@application/states/auth.state';
 import { Observable, map, of } from 'rxjs';
-import { fromStorageState, getStorageState } from './storage.state';
+import { LocalStorageState, fromStorageState } from './storage.state';
 
 @Injectable()
 export class AuthStateImpl extends AuthState {
@@ -13,9 +13,9 @@ export class AuthStateImpl extends AuthState {
     );
   }
   public signOut(): Observable<void> {
-    return of(getStorageState().setItem(this._tokenKey));
+    return of(LocalStorageState.setItem(this._tokenKey));
   }
   public signIn(accessToken: string): Observable<void> {
-    return of(getStorageState().setItem(this._tokenKey, accessToken));
+    return of(LocalStorageState.setItem(this._tokenKey, accessToken));
   }
 }

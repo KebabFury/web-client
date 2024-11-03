@@ -1,17 +1,13 @@
 import { Observable } from 'rxjs';
 
 class StorageState {
-  public constructor(private readonly _storage?: Storage) {}
+  public constructor(private readonly _storage: Storage) {}
 
   public getItem(key: string): string | undefined {
-    return this._storage?.getItem(key) || undefined;
+    return this._storage.getItem(key) || undefined;
   }
 
   public setItem(key: string, value: string | undefined = undefined): void {
-    if (this._storage === undefined) {
-      return;
-    }
-
     const oldValue = this.getItem(key);
 
     if (oldValue !== value) {
@@ -32,13 +28,13 @@ class StorageState {
   }
 }
 
-export const getStorageState = () => new StorageState(localStorage);
+export const LocalStorageState = new StorageState(localStorage);
 
 export function fromStorageState<T extends string>(
   key: string
 ): Observable<T | undefined> {
   return new Observable<T | undefined>(subscriber => {
-    subscriber.next(getStorageState().getItem(key) as T | undefined);
+    subscriber.next(LocalStorageState.getItem(key) as T | undefined);
 
     function handler(evt: StorageEvent) {
       if (evt.key === key && evt.oldValue !== evt.newValue) {

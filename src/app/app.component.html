@@ -1,11 +1,1 @@
-<div
-  class="container"
-  *ngIf="isAuthorized$ | async">
-  <app-navigation></app-navigation>
-
-  <main class="main">
-    <router-outlet></router-outlet>
-  </main>
-</div>
-
-<router-outlet *ngIf="!(isAuthorized$ | async)"></router-outlet>
+<router-outlet></router-outlet>

@@ -10,19 +10,32 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderService } from '@domain/services/provider.service';
-import { getStorageState } from '@infrastructure/states/storage.state';
+import { LocalStorageState } from '@infrastructure/states/storage.state';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
+import { NavigationComponent } from '../../navigation/navigation.component';
+import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-side-template.component';
 declare const SwaggerEditorBundle: any;
 declare const SwaggerEditorStandalonePreset: any;
 
 @Component({
   selector: 'app-provider-adding',
   standalone: true,
-  imports: [CommonModule, RouterModule, IconComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    IconComponent,
+    TwoSideTemplateComponent,
+    NavigationComponent,
+  ],
   template: `
-    <div class="container-main">
-      <div id="swagger-editor"></div>
-    </div>
+    <app-two-side-template>
+      <app-navigation left />
+      <div
+        class="container-main"
+        right>
+        <div id="swagger-editor"></div>
+      </div>
+    </app-two-side-template>
   `,
   styleUrl: 'provider-adding.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -77,7 +90,7 @@ export class ProviderAddingComponent {
       authorizationEndpoint: this.form.controls.authorizationEndpoint.value,
       tokenEndpoint: this.form.controls.tokenEndpoint.value,
       scope: this.form.controls.scope.value,
-      swaggerJson: getStorageState().getItem(this._key) ?? '{}',
+      swaggerJson: LocalStorageState.getItem(this._key) ?? '{}',
     };
 
     this._service

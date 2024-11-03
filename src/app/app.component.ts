@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { AuthService } from '@domain/services/auth.service';
 import { NavigationComponent } from './presentation/navigation/navigation.component';
 
 @Component({
@@ -11,7 +10,4 @@ import { NavigationComponent } from './presentation/navigation/navigation.compon
   templateUrl: 'app.component.html',
   styleUrl: 'app.component.scss',
 })
-export class AppComponent {
-  private readonly _authService = inject(AuthService);
-  protected readonly isAuthorized$ = this._authService.isAuthorized();
-}
+export class AppComponent {}
