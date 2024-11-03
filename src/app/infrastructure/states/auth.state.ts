@@ -15,4 +15,7 @@ export class AuthStateImpl extends AuthState {
   public signOut(): Observable<void> {
     return of(getStorageState().setItem(this._tokenKey));
   }
+  public signIn(accessToken: string): Observable<void> {
+    return of(getStorageState().setItem(this._tokenKey, accessToken));
+  }
 }
