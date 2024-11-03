@@ -7,13 +7,14 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderService } from '@domain/services/provider.service';
 import { LocalStorageState } from '@infrastructure/states/storage.state';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
 import { NavigationComponent } from '../../navigation/navigation.component';
 import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-side-template.component';
+import { IconType } from '@presentation/utils/icon/icon-type.enum';
 declare const SwaggerEditorBundle: any;
 declare const SwaggerEditorStandalonePreset: any;
 
@@ -30,8 +31,11 @@ declare const SwaggerEditorStandalonePreset: any;
     FormsModule
   ],
   template: `
+    <div class="arrow-back" (click)="back()">
+      <app-icon [icon]="IconType.BACK"/>
+    </div>
     <app-two-side-template>
-      <div left>
+      <div left class="left">
         <form class="form-content" (ngSubmit)="submit()">
           <label
             class="title"
@@ -165,7 +169,9 @@ declare const SwaggerEditorStandalonePreset: any;
 })
 export class ProviderAddingComponent {
   private readonly _service = inject(ProviderService);
+  private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
+  protected readonly IconType = IconType;
 
   private readonly _key = 'swagger-editor-content';
 
@@ -212,6 +218,9 @@ export class ProviderAddingComponent {
   protected readonly displayError = (control: FormControl<string>) =>
     control.invalid && (control.dirty || control.touched);
   
+  protected back(): void {
+    this._router.navigate(['/providers']);
+  }
   protected submit(): void {
     const request: ProviderCreateRequest = {
       name: this.form.controls.name.value,

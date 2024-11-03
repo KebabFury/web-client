@@ -12,11 +12,26 @@ $bot-card: #ffffff1a;
 
 // ======================================================
 
+.arrow-back {
+    position: absolute;
+    color: white;
+    top: 32px;
+    left: 32px;
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
 input {
     color: white;
     background-color: #77777738;
 }
 
+.left {
+    display: flex;
+    align-items: end;
+}
 .wrapper {
     display: flex;
     align-items: center;
@@ -201,5 +216,13 @@ input {
 }
 
 .swagger-editor .swagger-ui .info .title {
+    color: white;
+}
+
+.swagger-editor .swagger-ui .opblock .opblock-section-header {
+    background: hsl(0deg 0% 100% / 51%);
+}
+
+.swagger-editor .swagger-ui .tab li {
     color: white;
 }

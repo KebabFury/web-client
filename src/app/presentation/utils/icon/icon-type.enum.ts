@@ -10,4 +10,5 @@ export enum IconType {
   MAC = 'mac',
   ASSISTANT = 'assistant',
   DISPLAY = 'display',
+  BACK='back'
 }
