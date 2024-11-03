@@ -28,7 +28,10 @@ input {
 .field-error {
     color: $pink-main;
     margin-top: -16px;
-    margin-bottom: 12px;
+    position: relative;
+    top: -36px;
+    left: 12px;
+    pointer-events: none;
 }
 
 .title {

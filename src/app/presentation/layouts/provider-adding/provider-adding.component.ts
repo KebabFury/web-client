@@ -69,7 +69,7 @@ declare const SwaggerEditorStandalonePreset: any;
           <label
             class="title"
             for="clientId">
-            ClientId
+            Client Id
           </label>
           <input
             id="clientId"
@@ -78,14 +78,14 @@ declare const SwaggerEditorStandalonePreset: any;
             class="field-error"
             *ngIf="displayError(form.controls.clientId)">
             <small *ngIf="form.controls.clientId.errors?.['required']">
-              ClientId is required!
+              Client Id is required!
             </small>
           </div>
 
           <label
             class="title"
             for="clientSecret">
-            ClientSecret
+            Client Secret
           </label>
           <input
             id="clientSecret"
@@ -94,14 +94,14 @@ declare const SwaggerEditorStandalonePreset: any;
             class="field-error"
             *ngIf="displayError(form.controls.clientSecret)">
             <small *ngIf="form.controls.clientSecret.errors?.['required']">
-              ClientSecret is required!
+              Client Secret is required!
             </small>
           </div>
 
           <label
             class="title"
             for="authorizationEndpoint">
-            AuthorizationEndpoint
+            Authorization endpoint
           </label>
           <input
             id="authorizationEndpoint"
@@ -110,14 +110,14 @@ declare const SwaggerEditorStandalonePreset: any;
             class="field-error"
             *ngIf="displayError(form.controls.authorizationEndpoint)">
             <small *ngIf="form.controls.authorizationEndpoint.errors?.['required']">
-              AuthorizationEndpoint is required!
+              Authorization endpoint is required!
             </small>
           </div>
 
           <label
             class="title"
             for="tokenEndpoint">
-            TokenEndpoint
+            Token Endpoint
           </label>
           <input
             id="tokenEndpoint"
@@ -126,7 +126,7 @@ declare const SwaggerEditorStandalonePreset: any;
             class="field-error"
             *ngIf="displayError(form.controls.tokenEndpoint)">
             <small *ngIf="form.controls.tokenEndpoint.errors?.['required']">
-              TokenEndpoint is required!
+              Token Endpoint is required!
             </small>
           </div>
 
