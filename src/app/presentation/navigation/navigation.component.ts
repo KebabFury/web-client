@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '@domain/services/auth.service';
 import { IconType } from '@presentation/utils/icon/icon-type.enum';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
-// import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -34,8 +34,8 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
             </div>
           </a>
           <a
-            mat-list-item
-            (click)="logout()">
+            (click)="signOut()"
+            mat-list-item>
             <div class="navigation__category__item">
               <app-icon [icon]="IconType.LOGOUT"></app-icon>
               <span class="navigation__category__item__name">Logout</span>
@@ -48,14 +48,11 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
   styleUrl: 'navigation.component.scss',
 })
 export class NavigationComponent {
+  private readonly _authService = inject(AuthService);
+
   protected readonly IconType = IconType;
 
-  // constructor(
-  //   private _authService: AuthService,
-  // ) {
-  // }
-
-  public logout(): void {
-    // this._authService.logout();
+  protected signOut(): void {
+    this._authService.signOut();
   }
 }

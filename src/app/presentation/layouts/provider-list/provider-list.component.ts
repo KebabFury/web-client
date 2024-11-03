@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterModule } from '@angular/router';
 import { ProviderLight } from '@domain/models/provider';
 import { ProviderService } from '@domain/services/provider.service';
@@ -17,14 +18,16 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
           Your Providers:
         </p>
         <div class="header__right">
-          <button class="add-button" (click)="router.navigate(['provider-adding'])">
+          <button
+            class="add-button"
+            (click)="navigateToProviderCreate()">
             <app-icon [icon]="IconType.PLUS"></app-icon>
           </button>
         </div>
       </div>
 
       <div class="bot-list">
-        @for (provider of providers; track provider) {
+        @for (provider of providers(); track provider) {
           <div class="bot">
             <div class="bot__content">
               <div class="bot__content__avatar-stub">
@@ -33,7 +36,9 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
                   [icon]="IconType.ROBOT" />
               </div>
               <div class="bot__content__info">
-                <span class="bot__content__info__name">{{provider.name}}</span>
+                <span class="bot__content__info__name">{{
+                  provider.name
+                }}</span>
                 <span class="bot__content__info__description">Description</span>
               </div>
             </div>
@@ -50,22 +55,22 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
   styleUrl: 'provider-list.component.scss',
 })
 export class ProviderListComponent implements OnInit {
-  // public products: IProduct[] = [];
+  private readonly _providerService = inject(ProviderService);
+  private readonly _destroyRef = inject(DestroyRef);
+  private readonly _router = inject(Router);
+
+  protected readonly providers = signal<readonly ProviderLight[]>([]);
+
   protected readonly IconType = IconType;
-  public productsFilteredList: number[] = [1, 2, 3, 4, 5, 6, 7];
-  public providerService = inject(ProviderService);
-  public router = inject(Router);
-  public providers: ProviderLight[] = [];
-  // public filterValue: string = '';
-  // private key: string = '0';
-  // public isActiveBase: boolean = true;
-  // public isActiveUser: boolean = false;
 
-  constructor() {} // private _dialog: MatDialog // private _productService: ProductService,
+  public ngOnInit(): void {
+    this._providerService
+      .get()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe(this.providers.set);
+  }
 
-  public async ngOnInit(): Promise<void> {
-    this.providerService.get().subscribe((providers) => {
-      this.providers = [...providers];
-    });
+  protected navigateToProviderCreate(): void {
+    this._router.navigate(['provider-adding']);
   }
 }
