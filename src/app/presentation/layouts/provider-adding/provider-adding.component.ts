@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
 import { ProviderService } from '@domain/services/provider.service';
 import { LocalStorageState } from '@infrastructure/states/storage.state';
@@ -181,6 +181,7 @@ export class ProviderAddingComponent {
   private readonly _service = inject(ProviderService);
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
+
   protected readonly IconType = IconType;
 
   private readonly _key = 'swagger-editor-content';
@@ -227,7 +228,7 @@ export class ProviderAddingComponent {
 
   protected readonly displayError = (control: FormControl<string>) =>
     control.invalid && (control.dirty || control.touched);
-  
+
   protected back(): void {
     this._router.navigate(['/providers']);
   }
