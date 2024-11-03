@@ -141,12 +141,12 @@ $bot-card: #FFFFFF1A;
         cursor: pointer;
 
         .bot__content__info__name {
-            color: rgb(127, 127, 228);
+            color: rgb(240, 245, 183);
             @include typography.body-large;
         }
 
         .bot__content__info__description {
-            color: rgb(144, 144, 240);
+            color: rgb(240, 245, 183);
         }
     }
 

@@ -15,11 +15,11 @@ import { IconComponent } from '@presentation/utils/icon/icon.component';
         <div>
           <a
             mat-list-item
-            routerLink="bots"
+            routerLink="providers"
             routerLinkActive="mdc-list-item--activated">
             <div class="navigation__category__item">
               <app-icon [icon]="IconType.ROBOT"></app-icon>
-              <span class="navigation__category__item__name">My Bots</span>
+              <span class="navigation__category__item__name">My Providers</span>
             </div>
           </a>
 

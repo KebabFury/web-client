@@ -24,7 +24,7 @@ export class AuthService {
   public signIn(request: UserSignInRequest): Observable<UserSignInResponse> {
     return this._repository
       .signIn(request)
-      .pipe(tap(() => this._router.navigate(['/bots'])));
+      .pipe(tap(() => this._router.navigate(['/providers'])));
   }
 
   public signOut(): Observable<void> {

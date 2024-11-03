@@ -8,7 +8,7 @@ export const nonAuthGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   return authService.isAuthorized().pipe(
-    tap(isAuthorized => isAuthorized && router.navigate(['/bots'])),
+    tap(isAuthorized => isAuthorized && router.navigate(['/providers'])),
     map(isAuthorized => !isAuthorized)
   );
 };
