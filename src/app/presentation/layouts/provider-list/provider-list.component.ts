@@ -71,6 +71,6 @@ export class ProviderListComponent implements OnInit {
   }
 
   protected navigateToProviderCreate(): void {
-    this._router.navigate(['provider-adding']);
+    this._router.navigate(['/provider-adding']);
   }
 }

@@ -94,7 +94,6 @@ import { AuthService } from '@domain/services/auth.service';
     </div>
   `,
   styleUrls: ['sign-up.component.scss'],
-  host: { ngSkipHydration: 'true' },
 })
 export class SignUpComponent {
   private readonly _authService = inject(AuthService);

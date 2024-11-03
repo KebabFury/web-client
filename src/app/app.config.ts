@@ -6,7 +6,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideApplication } from '@application/providers';
-import { provideInfrastructure } from '@infrastructure/providers';
+import { provideInfrastructureMock } from '@infrastructure/providers';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     ...provideApplication(),
-    ...provideInfrastructure(),
+    ...provideInfrastructureMock(),
     provideHttpClient(withInterceptorsFromDi()),
   ],
 };
