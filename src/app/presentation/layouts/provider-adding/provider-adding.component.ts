@@ -13,14 +13,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProviderCreateRequest } from '@domain/dtos/requests/provider-create.request';
+import { CustomProvider } from '@domain/models/provider';
 import { ProviderService } from '@domain/services/provider.service';
 import { LocalStorageState } from '@infrastructure/states/storage.state';
 import { IconType } from '@presentation/utils/icon/icon-type.enum';
 import { IconComponent } from '@presentation/utils/icon/icon.component';
+import { filter, map, switchMap } from 'rxjs';
 import { NavigationComponent } from '../../navigation/navigation.component';
 import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-side-template.component';
+
 declare const SwaggerEditorBundle: any;
 declare const SwaggerEditorStandalonePreset: any;
 
@@ -164,10 +167,11 @@ declare const SwaggerEditorStandalonePreset: any;
 
           <div class="submit__buttons">
             <button
+              *ngIf="title$ | async as title"
               [disabled]="form.invalid"
               type="submit"
               style="width: 100%">
-              Create Account
+              {{ title }}
             </button>
           </div>
         </form>
@@ -183,13 +187,43 @@ declare const SwaggerEditorStandalonePreset: any;
   encapsulation: ViewEncapsulation.None,
 })
 export class ProviderAddingComponent {
+  public constructor() {
+    this._id$
+      .pipe(
+        filter((id): id is string => !!id),
+        switchMap(id => this._service.getById(id)),
+        takeUntilDestroyed(this._destroyRef)
+      )
+      .subscribe(provider => this._bindForm(provider));
+  }
+
   private readonly _service = inject(ProviderService);
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
+  private readonly _route = inject(ActivatedRoute);
 
   protected readonly IconType = IconType;
 
   private readonly _key = 'swagger-editor-content';
+  private readonly _id$ = this._route.paramMap.pipe(map(map => map.get('id')));
+
+  protected readonly title$ = this._id$.pipe(
+    map(id => (id ? 'Update Provider' : 'Create Provider'))
+  );
+
+  private _bindForm(provider: CustomProvider): void {
+    this.form.setValue({
+      name: provider.name,
+      description: provider.providerDescription,
+      scope: provider.scope,
+      clientId: provider.clientId,
+      clientSecret: provider.clientSecret,
+      tokenEndpoint: provider.tokenEndpoint,
+      authorizationEndpoint: provider.authorizationEndpoint,
+    });
+
+    localStorage.setItem(this._key, provider.swaggerJson);
+  }
 
   protected readonly form = new FormGroup({
     name: new FormControl<string>('', {
@@ -254,9 +288,13 @@ export class ProviderAddingComponent {
       ),
     };
 
-    this._service
-      .create(request)
-      .pipe(takeUntilDestroyed(this._destroyRef))
+    this._id$
+      .pipe(
+        switchMap(id =>
+          id ? this._service.update(id, request) : this._service.create(request)
+        ),
+        takeUntilDestroyed(this._destroyRef)
+      )
       .subscribe();
   }
 }

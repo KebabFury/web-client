@@ -23,6 +23,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'provider-edit/:id',
+    component: ProviderAddingComponent,
+    canActivate: [authGuard],
+  },
+  {
     path: 'sign-up',
     component: SignUpComponent,
     canActivate: [nonAuthGuard],

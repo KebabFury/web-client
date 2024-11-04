@@ -11,6 +11,10 @@ export class ProviderService {
   private readonly _repository = inject(ProviderRepository);
   private readonly _router = inject(Router);
 
+  public getById(id: string): Observable<CustomProvider> {
+    return this._repository.getById(id);
+  }
+
   public get(): Observable<readonly CustomProvider[]> {
     return this._repository.get();
   }
@@ -20,6 +24,15 @@ export class ProviderService {
   ): Observable<ProviderCreateResponse> {
     return this._repository
       .create(request)
+      .pipe(tap(() => this._router.navigate(['/providers'])));
+  }
+
+  public update(
+    id: string,
+    request: ProviderCreateRequest
+  ): Observable<ProviderCreateResponse> {
+    return this._repository
+      .update(id, request)
       .pipe(tap(() => this._router.navigate(['/providers'])));
   }
 }

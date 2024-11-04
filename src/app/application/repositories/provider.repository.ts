@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
 export class ProviderRepositoryImpl extends ProviderRepository {
   private readonly _api = inject(ProviderApi);
 
+  public getById(id: string): Observable<CustomProvider> {
+    return this._api.getById(id);
+  }
+
   public get(): Observable<readonly CustomProvider[]> {
     return this._api.get();
   }
@@ -18,5 +22,12 @@ export class ProviderRepositoryImpl extends ProviderRepository {
     request: ProviderCreateRequest
   ): Observable<ProviderCreateResponse> {
     return this._api.create(request);
+  }
+
+  public update(
+    id: string,
+    request: ProviderCreateRequest
+  ): Observable<ProviderCreateResponse> {
+    return this._api.update(id, request);
   }
 }
