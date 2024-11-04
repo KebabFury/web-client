@@ -38,7 +38,8 @@ import { AuthService } from '@domain/services/auth.service';
           >
           <input
             id="email"
-            [formControl]="form.controls.email" />
+            [formControl]="form.controls.email"
+            readonly />
           <div
             class="field-error"
             *ngIf="displayError(form.controls.email)">
@@ -58,6 +59,7 @@ import { AuthService } from '@domain/services/auth.service';
           <input
             id="password"
             [formControl]="form.controls.password"
+            readonly
             type="password" />
           <div
             class="field-error"

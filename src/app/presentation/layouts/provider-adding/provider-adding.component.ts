@@ -170,7 +170,7 @@ declare const SwaggerEditorStandalonePreset: any;
               *ngIf="title$ | async as title"
               [disabled]="form.invalid"
               type="submit"
-              style="width: 100%">
+              style="width: 100%; color: black">
               {{ title }}
             </button>
           </div>

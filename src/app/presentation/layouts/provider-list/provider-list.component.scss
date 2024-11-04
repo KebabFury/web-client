@@ -130,8 +130,14 @@ $bot-card: #ffffff1a;
   align-items: center;
   justify-content: space-between;
   border-radius: 30px;
+  overflow: hidden;
   // background: $bot-card;
-  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgba(255, 250, 0, 0.12) 0%, rgb(78 11 123 / 29%) 97%);
+  background: linear-gradient(
+    90deg,
+    rgb(2, 0, 36) 0%,
+    rgba(255, 250, 0, 0.12) 0%,
+    rgb(78 11 123 / 29%) 97%
+  );
 
   padding: 16px;
   padding-inline: 28px;
@@ -160,6 +166,7 @@ $bot-card: #ffffff1a;
     align-items: center;
     box-sizing: border-box;
     gap: 16px;
+    overflow: hidden;
 
     &__avatar-stub {
       padding: 12px;
@@ -170,6 +177,7 @@ $bot-card: #ffffff1a;
     &__info {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
 
       &__name {
         color: white;
@@ -177,6 +185,13 @@ $bot-card: #ffffff1a;
 
       &__description {
         color: #ffffffcc;
+      }
+
+      &__name,
+      &__description {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
   }
@@ -215,4 +230,3 @@ $bot-card: #ffffff1a;
     }
   }
 }
-
