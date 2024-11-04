@@ -53,9 +53,9 @@ import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-
                   <span class="bot__content__info__name">{{
                     provider.name
                   }}</span>
-                  <span class="bot__content__info__description"
-                    >{{ provider.description}}</span
-                  >
+                  <span class="bot__content__info__description">{{
+                    provider.providerDescription
+                  }}</span>
                 </div>
               </div>
               <!-- <div class="bot__status active">
