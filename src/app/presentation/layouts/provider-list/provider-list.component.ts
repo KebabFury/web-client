@@ -52,7 +52,7 @@ import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-
                     provider.name
                   }}</span>
                   <span class="bot__content__info__description"
-                    >Description</span
+                    >{{ provider.description}}</span
                   >
                 </div>
               </div>
@@ -60,7 +60,7 @@ import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-
               <div class="circle"></div>
               <p>Enabled</p>
             </div> -->
-              <div class="bot__toggle active"></div>
+              <!-- <div class="bot__toggle active"></div> -->
             </div>
           }
         </div>

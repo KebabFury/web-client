@@ -240,6 +240,7 @@ export class ProviderAddingComponent {
   protected submit(): void {
     const request: ProviderCreateRequest = {
       name: this.form.controls.name.value,
+      description: this.form.controls.description.value,
       providerDescription: this.form.controls.description.value,
       clientId: this.form.controls.clientId.value,
       clientSecret: this.form.controls.clientSecret.value,

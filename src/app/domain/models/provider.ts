@@ -1,6 +1,7 @@
 export interface CustomProvider {
   readonly id: string;
   readonly name: string;
+  readonly description: string;
   readonly actionCode: string;
   readonly documentation: string;
 

@@ -125,33 +125,24 @@ $bot-card: #ffffff1a;
   align-items: center;
   justify-content: space-between;
   border-radius: 30px;
-  background: $bot-card;
+  // background: $bot-card;
+  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgba(255, 250, 0, 0.12) 0%, rgb(78 11 123 / 29%) 97%);
+
   padding: 16px;
   padding-inline: 28px;
   @include typography.body-large;
 
   &:hover {
     position: relative;
-
+    background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(237 255 55 / 12%) 0%, rgb(206 250 59 / 12%) 97%);
     &::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgb(39, 94, 35);
       border-radius: 16px;
-      opacity: 0.08;
     }
 
     cursor: pointer;
-
-    .bot__content__info__name {
-      color: rgb(240, 245, 183);
-      @include typography.body-large;
-    }
-
-    .bot__content__info__description {
-      color: rgb(240, 245, 183);
-    }
   }
 
   @media (max-width: $phone-small-media) {
