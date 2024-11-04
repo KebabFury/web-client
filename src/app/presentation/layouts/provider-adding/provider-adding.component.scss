@@ -15,7 +15,7 @@ $bot-card: #ffffff1a;
 .arrow-back {
   position: absolute;
   color: white;
-  top: 32px;
+  top: 20px;
   left: 32px;
 
   :hover {
@@ -80,7 +80,7 @@ input {
 
   button {
     padding: 10px 20px;
-    background-color: $yellow-main;
+    background-color: #a4bd05;
     color: white;
     border: none;
     border-radius: 6px;
@@ -95,28 +95,6 @@ input {
     &:disabled {
       background-color: #777777; // Отключенная кнопка
       cursor: not-allowed; // Стрелка для отключенной кнопки
-    }
-  }
-}
-
-.login {
-  display: flex;
-  justify-content: center;
-  padding-top: 16px;
-
-  span {
-    font-size: 14px;
-    color: #ffffff;
-  }
-
-  &__button {
-    color: #7f9305;
-    font-weight: bold;
-    margin-left: 5px;
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline; // Подчеркивание при наведении
     }
   }
 }
@@ -247,7 +225,7 @@ input {
 }
 
 .swagger-editor .swagger-ui .scheme-container {
-    background: #ffffff42;
+    background: #ffffff1c;
 }
 
 .swagger-editor .swagger-ui .parameter__type {

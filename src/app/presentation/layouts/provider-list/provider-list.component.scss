@@ -96,10 +96,15 @@ $bot-card: #ffffff1a;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 36px;
-    width: 36px;
+    height: 48px;
+    width: 48px;
     background-color: $yellow-main;
-    border-radius: 32px;
+    border-radius: 20px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #ddfe09dd;
+    }
   }
 }
 
@@ -134,7 +139,7 @@ $bot-card: #ffffff1a;
 
   &:hover {
     position: relative;
-    background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(237 255 55 / 12%) 0%, rgb(206 250 59 / 12%) 97%);
+    background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(153 168 4 / 22%) 0%, rgb(66 2 67 / 37%) 97%);
     &::before {
       content: '';
       position: absolute;
