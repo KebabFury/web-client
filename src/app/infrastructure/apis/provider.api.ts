@@ -11,16 +11,31 @@ import { Observable } from 'rxjs';
 export class ProviderApiImpl extends ProviderApi {
   private readonly _http = inject(HttpClient);
 
+  public getById(id: string): Observable<CustomProvider> {
+    return this._http.get<CustomProvider>(`${environment.api}/provider/${id}`);
+  }
+
   public get(): Observable<readonly CustomProvider[]> {
     return this._http.get<readonly CustomProvider[]>(
       `${environment.api}/provider/list-all`
     );
   }
+
   public create(
     request: ProviderCreateRequest
   ): Observable<ProviderCreateResponse> {
     return this._http.post(
       `${environment.api}/provider/create-provider`,
+      request
+    );
+  }
+
+  public update(
+    id: string,
+    request: ProviderCreateRequest
+  ): Observable<ProviderCreateResponse> {
+    return this._http.put(
+      `${environment.api}/provider/${id}/deep-upadte`,
       request
     );
   }

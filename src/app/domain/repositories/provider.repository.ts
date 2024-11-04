@@ -5,7 +5,12 @@ import { Observable } from 'rxjs';
 
 export abstract class ProviderRepository {
   public abstract get(): Observable<readonly CustomProvider[]>;
+  public abstract getById(id: string): Observable<CustomProvider>;
   public abstract create(
+    request: ProviderCreateRequest
+  ): Observable<ProviderCreateResponse>;
+  public abstract update(
+    id: string,
     request: ProviderCreateRequest
   ): Observable<ProviderCreateResponse>;
 }

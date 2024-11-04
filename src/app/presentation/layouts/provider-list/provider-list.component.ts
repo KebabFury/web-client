@@ -109,6 +109,6 @@ export class ProviderListComponent implements OnInit {
   }
 
   protected navigateToProviderUpdate(id: string): void {
-    this._router.navigate(['/provider-adding', id]);
+    this._router.navigate(['/provider-edit', id]);
   }
 }

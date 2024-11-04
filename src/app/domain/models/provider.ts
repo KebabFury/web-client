@@ -4,6 +4,8 @@ export interface CustomProvider {
   readonly description: string;
   readonly actionCode: string;
   readonly documentation: string;
+  readonly providerDescription: string;
+  readonly swaggerJson: string;
 
   readonly clientId: string;
   readonly clientSecret: string;
