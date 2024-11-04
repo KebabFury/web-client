@@ -40,7 +40,9 @@ import { TwoSideTemplateComponent } from '../../templates/two-side-template/two-
 
         <div class="bot-list">
           @for (provider of providers(); track provider) {
-            <div class="bot">
+            <div
+              class="bot"
+              (click)="navigateToProviderUpdate(provider.id)">
               <div class="bot__content">
                 <div class="bot__content__avatar-stub">
                   <app-icon
@@ -104,5 +106,9 @@ export class ProviderListComponent implements OnInit {
 
   protected navigateToProviderCreate(): void {
     this._router.navigate(['/provider-adding']);
+  }
+
+  protected navigateToProviderUpdate(id: string): void {
+    this._router.navigate(['/provider-adding', id]);
   }
 }
