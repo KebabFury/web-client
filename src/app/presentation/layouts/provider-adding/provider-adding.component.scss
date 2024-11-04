@@ -41,7 +41,7 @@ input {
 }
 
 .field-error {
-  color: $pink-main;
+  color: $yellow-main;
   margin-top: -16px;
   position: relative;
   top: -36px;
@@ -67,7 +67,7 @@ input {
     transition: border-color 0.3s;
 
     &:focus {
-      border-color: $pink-main; // Окрашиваем рамку в синий цвет при фокусе
+      border-color: $yellow-main; // Окрашиваем рамку в синий цвет при фокусе
       outline: none;
     }
   }
@@ -80,7 +80,7 @@ input {
 
   button {
     padding: 10px 20px;
-    background-color: $pink-main;
+    background-color: $yellow-main;
     color: white;
     border: none;
     border-radius: 6px;
@@ -89,7 +89,7 @@ input {
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: $pink-main; // Темнее при наведении
+      background-color: $yellow-main; // Темнее при наведении
     }
 
     &:disabled {
@@ -110,7 +110,7 @@ input {
   }
 
   &__button {
-    color: $pink-main;
+    color: #7f9305;
     font-weight: bold;
     margin-left: 5px;
     cursor: pointer;
@@ -232,6 +232,54 @@ input {
 
 .swagger-ui .wrapper {
   max-height: unset;
+}
+
+.swagger-editor .swagger-ui .info li, .swagger-editor .swagger-ui .info p, .swagger-editor .swagger-ui .info table {
+    color: white;
+}
+
+.swagger-editor .swagger-ui .info .base-url {
+    color: white;
+}
+
+.swagger-editor .swagger-ui .opblock-tag small {
+    color: white;
+}
+
+.swagger-editor .swagger-ui .scheme-container {
+    background: #ffffff42;
+}
+
+.swagger-editor .swagger-ui .parameter__type {
+    color: white;
+}
+
+.swagger-editor .swagger-ui section.models h4 {
+    color: white;
+}
+
+.swagger-editor .swagger-ui .model-title {
+    color: white;
+}
+
+.swagger-editor .swagger-ui .model {
+    color: #8cabfd;
+}
+
+.swagger-editor .swagger-ui .prop-type {
+    color: #2dff76;
+}
+
+.swagger-editor .swagger-ui .prop-format {
+    color: white;
+}
+
+.swagger-editor .swagger-ui section.models .model-container {
+    background: #f0f0f030;
+}
+
+.swagger-editor .swagger-ui section.models .model-container:hover {
+    background: #f0f0f04f;
 }
 
 #swagger-editor,
